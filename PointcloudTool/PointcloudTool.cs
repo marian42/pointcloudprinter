@@ -61,7 +61,16 @@ namespace XYZSeparator {
 		}
 
 		public static void Main(string[] args) {
-			preparePoints();
+			//preparePoints();
+
+			var mesh = BinarySTLReader.ReadFile("mesh.stl").ToArray();
+			Console.WriteLine(mesh.Length + " triangles found.");
+
+			foreach (var tri in mesh.Take(10)) {
+				Console.WriteLine(tri);
+			}
+
+			Console.Read();
 		}
 	}
 }
