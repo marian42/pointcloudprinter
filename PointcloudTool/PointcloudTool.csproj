@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HoleFixer.cs" />
+    <Compile Include="LatLngUtmConverter.cs" />
     <Compile Include="PointcloudTool.cs" />
     <Compile Include="PointHashSet.cs" />
     <Compile Include="SquareExtractor.cs" />

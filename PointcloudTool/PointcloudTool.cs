@@ -5,10 +5,14 @@ using System.Linq;
 
 namespace XYZSeparator {
 	public static class PointcloudTool {
-		public static void Main(string[] args) {
-			string inputFolder = @"data\";
 
-			var extractor = new SquareExtractor();
+		private static void preparePoints() {
+			string inputFolder = @"data\";
+			
+			var converter = new Oware.LatLngUTMConverter("WGS 84");
+			var coordinates = converter.convertLatLngToUtm(51.3349443, 7.2828901);
+
+			var extractor = new SquareExtractor(coordinates.Easting, coordinates.Northing, 200);
 
 			Console.WriteLine("Reading all .xyz files in " + inputFolder + "...");
 
@@ -54,6 +58,10 @@ namespace XYZSeparator {
 
 			Console.WriteLine("Complete.");
 			Console.ReadLine();
+		}
+
+		public static void Main(string[] args) {
+			preparePoints();
 		}
 	}
 }

@@ -15,10 +15,10 @@ namespace XYZSeparator {
 
 		private List<Vector3> points;
 
-		public SquareExtractor() {
-			this.CenterX = 380406.26472043;
-			this.CenterY = 5688506.84004219;
-			this.halfSize = 125;
+		public SquareExtractor(double centerX, double centerY, double size) {
+			this.CenterX = centerX;
+			this.CenterY = centerY;
+			this.halfSize = size / 2.0;
 			this.minDistance = Double.PositiveInfinity;
 			this.points = new List<Vector3>();
 		}
