@@ -12,7 +12,7 @@ namespace XYZSeparator {
 			var converter = new Oware.LatLngUTMConverter("WGS 84");
 			var coordinates = converter.convertLatLngToUtm(51.3349443, 7.2828901);
 
-			var extractor = new SquareExtractor(coordinates.Easting, coordinates.Northing, 200);
+			var extractor = new SquareExtractor(coordinates.Easting, coordinates.Northing, 40);
 
 			Console.WriteLine("Reading all .xyz files in " + inputFolder + "...");
 
@@ -40,20 +40,22 @@ namespace XYZSeparator {
 			XYZFile.Write("heightmap.xyz", pointHashSet.GetHeightMap(), pointHashSet.GetHeightMapNormals());
 
 			Console.WriteLine("Complete.");
-			Console.ReadLine();
+		}
+
+		private static void makeSolid() {
+			Console.WriteLine("Reading mesh...");
+			var meshCreator = new SolidMeshCreator(STLFile.Read("mesh.stl").ToArray(), 40, 10);
+
+			Console.WriteLine("Writing...");
+			STLFile.Write("mesh_solid.stl", meshCreator.Triangles);
+
+			STLFile.Write("cube.stl", meshCreator.GetCube().ToArray());
+
+			Console.WriteLine("Complete.");
 		}
 
 		public static void Main(string[] args) {
-			//preparePoints();
-
-			var mesh = BinarySTLReader.ReadFile("mesh.stl").ToArray();
-			Console.WriteLine(mesh.Length + " triangles found.");
-
-			foreach (var tri in mesh.Take(10)) {
-				Console.WriteLine(tri);
-			}
-
-			Console.Read();
+			PointcloudTool.makeSolid();
 		}
 	}
 }

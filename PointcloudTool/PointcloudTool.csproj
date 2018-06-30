@@ -77,16 +77,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BinarySTLReader.cs" />
+    <Compile Include="STLFile.cs" />
     <Compile Include="HoleFixer.cs" />
     <Compile Include="LatLngUtmConverter.cs" />
     <Compile Include="PointcloudTool.cs" />
     <Compile Include="PointHashSet.cs" />
+    <Compile Include="SolidMeshCreator.cs" />
     <Compile Include="SquareExtractor.cs" />
     <Compile Include="Triangle.cs" />
     <Compile Include="Vector3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XYZLoader.cs" />
+    <Compile Include="XYZFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
