@@ -49,7 +49,7 @@ namespace XYZSeparator {
 		}
 
 		public void ProcessXYZFile(string filename, char separator) {
-			foreach (var point in XYZLoader.LoadContinuous(filename, separator)) {
+			foreach (var point in XYZFile.ReadContinuously(filename, separator)) {
 				this.handlePoint(point);
 			}
 		}

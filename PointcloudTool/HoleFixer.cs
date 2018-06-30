@@ -65,7 +65,7 @@ namespace XYZSeparator {
 		public static void Main_(string[] args) {
 			string inputFile = @"E:\pointdata\square.xyz";
 
-			var inputPoints = XYZLoader.LoadFile(inputFile, ' ');
+			var inputPoints = XYZFile.Read(inputFile, ' ');
 			var holeFixer = new HoleFixer(inputPoints);
 
 			var edgePoints = holeFixer.GetEdgePoints().ToArray();

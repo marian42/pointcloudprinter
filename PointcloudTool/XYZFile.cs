@@ -5,14 +5,14 @@ using System;
 using XYZSeparator;
 using System.Globalization;
 
-public class XYZLoader {
+public class XYZFile {
 	private const int batchSize = 1000;
 
-	public static Vector3[] LoadFile(string fileName, char separator) {
-		return File.ReadAllLines(fileName).Select(line => XYZLoader.parseLine(line, separator)).ToArray();
+	public static Vector3[] Read(string fileName, char separator) {
+		return File.ReadAllLines(fileName).Select(line => XYZFile.parseLine(line, separator)).ToArray();
 	}
 
-	public static IEnumerable<Vector3> LoadContinuous(string fileName, char separator) {
+	public static IEnumerable<Vector3> ReadContinuously(string fileName, char separator) {
 		var filestream = new System.IO.FileStream(fileName,
 										  System.IO.FileMode.Open,
 										  System.IO.FileAccess.Read,
@@ -49,6 +49,25 @@ public class XYZLoader {
 		}
 		catch (FormatException) {
 			throw new Exception("Bad line: " + line);
+		}
+	}
+
+	public static void Write(string outputFile, IEnumerable<Vector3> points, char separator = ' ') {
+		using (StreamWriter sw = File.CreateText(outputFile)) {
+			foreach (var point in points) {
+				sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0:0.00}{3}{1:0.00}{3}{2:0.00}", point.x, point.z, point.y, separator));
+			}
+		}
+	}
+
+	public static void Write(string outputFile, Vector3[] points, Vector3[] normals, char separator = ' ') {
+		using (StreamWriter sw = File.CreateText(@"heightmap.xyz")) {
+			for (int i = 0; i < points.Length; i++) {
+				var point = points[i];
+				var normal = normals[i];
+
+				sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0:0.00}{6}{1:0.00}{6}{2:0.00}{6}{3:0.00}{6}{4:0.00}{6}{5:0.00}", point.x, point.z, point.y, normal.x, normal.z, normal.y, separator));
+			}
 		}
 	}
 }
