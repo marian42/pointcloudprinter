@@ -37,7 +37,7 @@ namespace XYZSeparator {
 			XYZFile.Write("pointcloud.xyz", points);
 
 			var pointHashSet = new PointHashSet(1d, points);
-			XYZFile.Write("heightmap.xyz", pointHashSet.GetHeightMap(), pointHashSet.GetHeightMapNormals())
+			XYZFile.Write("heightmap.xyz", pointHashSet.GetHeightMap(), pointHashSet.GetHeightMapNormals());
 
 			Console.WriteLine("Complete.");
 			Console.ReadLine();
