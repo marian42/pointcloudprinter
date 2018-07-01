@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using XYZSeparator;
 
 public class Triangle {
 	public readonly Vector3 V1;

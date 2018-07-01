@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System;
-using XYZSeparator;
 
 public class PointHashSet {
 

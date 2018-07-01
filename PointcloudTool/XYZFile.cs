@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System;
-using XYZSeparator;
 using System.Globalization;
 
 public class XYZFile {

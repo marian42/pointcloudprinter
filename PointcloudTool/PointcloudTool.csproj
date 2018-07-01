@@ -7,8 +7,8 @@
     <ProjectGuid>{77FDE49B-5E66-4AED-8C3D-BF7874431C40}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XYZSeparator</RootNamespace>
-    <AssemblyName>XYZSeparator</AssemblyName>
+    <RootNamespace>PointcloudTool</RootNamespace>
+    <AssemblyName>PointcloudTool</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PublishUrl>publish\</PublishUrl>
