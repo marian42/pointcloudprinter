@@ -6,13 +6,11 @@ using System.Linq;
 namespace XYZSeparator {
 	public static class PointcloudTool {
 
-		private static void preparePoints() {
-			string inputFolder = @"data\";
-			
-			var converter = new Oware.LatLngUTMConverter("WGS 84");
-			var coordinates = converter.convertLatLngToUtm(51.3349443, 7.2828901);
+		private static void extract(string inputFolder, string outputFile, double latitude, double longitude, string projection, double size) {
+			var converter = new Oware.LatLngUTMConverter(projection);
+			var coordinates = converter.convertLatLngToUtm(latitude, longitude);
 
-			var extractor = new SquareExtractor(coordinates.Easting, coordinates.Northing, 40);
+			var extractor = new SquareExtractor(coordinates.Easting, coordinates.Northing, size);
 
 			Console.WriteLine("Reading all .xyz files in " + inputFolder + "...");
 
@@ -25,7 +23,17 @@ namespace XYZSeparator {
 			}
 
 			var points = extractor.GetCenteredPoints();
+			Console.WriteLine("Writing output file... ");
+			XYZFile.Write(outputFile, points);
+			Console.WriteLine("Complete.");
+		}
 
+		private static void fix(string inputFile, string outputFile, string heightmapFile) {
+			Console.WriteLine("Reading input file... ");
+			
+			var points = XYZFile.Read(inputFile);
+
+			Console.WriteLine("Fixing holes... ");
 			var holeFixer = new HoleFixer(points);
 
 			var edgePoints = holeFixer.GetEdgePoints().ToArray();
@@ -33,29 +41,31 @@ namespace XYZSeparator {
 
 			points = patches.Concat(points).ToArray();
 
-			Console.WriteLine("Writing output file... ");
-			XYZFile.Write("pointcloud.xyz", points);
+			Console.WriteLine("Writing output files... ");
+			XYZFile.Write(outputFile, points);
 
 			var pointHashSet = new PointHashSet(1d, points);
-			XYZFile.Write("heightmap.xyz", pointHashSet.GetHeightMap(), pointHashSet.GetHeightMapNormals());
+			XYZFile.Write(heightmapFile, pointHashSet.GetHeightMap(), pointHashSet.GetHeightMapNormals());
 
 			Console.WriteLine("Complete.");
 		}
 
-		private static void makeSolid() {
+		private static void makeSolid(string inputFile, string outputFile, string cubeFile, double size, double zMargin) {
 			Console.WriteLine("Reading mesh...");
-			var meshCreator = new SolidMeshCreator(STLFile.Read("mesh.stl").ToArray(), 40, 10);
+			var meshCreator = new SolidMeshCreator(STLFile.Read(inputFile).ToArray(), size, zMargin);
 
 			Console.WriteLine("Writing...");
-			STLFile.Write("mesh_solid.stl", meshCreator.Triangles);
+			STLFile.Write(outputFile, meshCreator.Triangles);
 
-			STLFile.Write("cube.stl", meshCreator.GetCube().ToArray());
+			STLFile.Write(cubeFile, meshCreator.GetCube().ToArray());
 
 			Console.WriteLine("Complete.");
 		}
 
 		public static void Main(string[] args) {
-			PointcloudTool.makeSolid();
+			PointcloudTool.extract("data/", "pointcloud.xyz", 51.3349443, 7.2828901, "WGS 84", 40);
+			PointcloudTool.fix("pointcloud.xyz", "pointcloud.xyz", "heightmap.xyz");
+			PointcloudTool.makeSolid("mesh.stl", "mesh.stl", "cube.stl", 40, 10);
 		}
 	}
 }

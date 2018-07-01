@@ -8,7 +8,7 @@ using System.Globalization;
 public class XYZFile {
 	private const int batchSize = 1000;
 
-	public static Vector3[] Read(string fileName, char separator) {
+	public static Vector3[] Read(string fileName, char separator = ' ') {
 		return File.ReadAllLines(fileName).Select(line => XYZFile.parseLine(line, separator)).ToArray();
 	}
 
