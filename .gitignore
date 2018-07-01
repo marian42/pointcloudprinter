@@ -1,6 +1,10 @@
 ﻿# use glob syntax
 syntax: glob
 
+data/**
+*.stl
+*.xyz
+
 *.obj
 *.pdb
 *.user
