@@ -25,6 +25,8 @@ public static class STLFile {
 				
 			reader.ReadBytes(2); // Attribute count
 		}
+		reader.Close();
+		stream.Close();
 	}
 
 	public static void Write(string filename, Triangle[] mesh) {

@@ -27,6 +27,8 @@ public class XYZFile {
 				yield return parseLine(line, separator);
 			}
 		}
+		streamReader.Close();
+		filestream.Close();
 	}
 
 	private static List<string> readBatch(StreamReader reader) {
