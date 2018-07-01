@@ -1,0 +1,1 @@
+"C:\Program Files\Blender Foundation\Blender\blender.exe" -b -P intersect.py -- mesh_solid.stl cube.stl mesh_final.stl
