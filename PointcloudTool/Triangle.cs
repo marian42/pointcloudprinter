@@ -17,9 +17,9 @@ public class Triangle {
 	}
 
 	public Triangle(Vector3 v1, Vector3 v2, Vector3 v3) {
-		this.V1 = v3;
+		this.V1 = v1;
 		this.V2 = v2;
-		this.V3 = v1;
+		this.V3 = v3;
 	}
 
 	public bool HasZeroArea() {
