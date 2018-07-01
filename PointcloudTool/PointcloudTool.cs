@@ -62,10 +62,59 @@ namespace XYZSeparator {
 			Console.WriteLine("Complete.");
 		}
 
+		private static void printUsage() {
+			string name = System.AppDomain.CurrentDomain.FriendlyName;
+			Console.WriteLine("This program can perform any one of three steps needed for mesh creation.");
+			Console.WriteLine(name + " extract <datadirectory> <output .xyz file> <latitude> <longitude> <input projection name> <size of extraction square>");
+			Console.WriteLine(name + " fix <inputfile .xyz> <output .xyz file> <output heightmap .xyz file>");
+			Console.WriteLine(name + " makeSolid <input .stl file> <output .stl file> <output cube .stl file> <size> <z margin>");
+		}
+
 		public static void Main(string[] args) {
-			PointcloudTool.extract("data/", "pointcloud.xyz", 51.3349443, 7.2828901, "WGS 84", 40);
-			PointcloudTool.fix("pointcloud.xyz", "pointcloud.xyz", "heightmap.xyz");
-			PointcloudTool.makeSolid("mesh.stl", "mesh.stl", "cube.stl", 40, 10);
+			if (args.Length == 0) {
+				printUsage();
+				return;
+			}
+			if (args[0] == "extract") {
+				if (args.Length != 7) {
+					printUsage();
+					return;
+				}
+				string inputFolder = args[1];
+				string outputFile = args[2];
+				double latitude = double.Parse(args[3]);
+				double longitude = double.Parse(args[4]);
+				string projection = args[5];
+				double size = double.Parse(args[6]);
+
+				PointcloudTool.extract(inputFolder, outputFile, latitude, longitude, projection, size);
+			} else if (args[0] == "fix") {
+				if (args.Length != 4) {
+					printUsage();
+					return;
+				}
+
+				string inputFile = args[1];
+				string outputFile = args[2];
+				string heightmapFile = args[3];
+
+				PointcloudTool.fix(inputFile, outputFile, heightmapFile);
+			} else if (args[0].ToLower() == "makesolid") {
+				if (args.Length != 6) {
+					printUsage();
+					return;
+				}
+
+				string inputFile = args[1];
+				string outputFile = args[2];
+				string cubeFile = args[3];
+				double size = double.Parse(args[4]);
+				double zMargin = double.Parse(args[5]);
+
+				PointcloudTool.makeSolid(inputFile, outputFile, cubeFile, size, zMargin);
+			} else {
+				printUsage();
+			}
 		}
 	}
 }
