@@ -77,34 +77,6 @@ public class PointHashSet {
 		}
 	}
 
-	public IEnumerable<IEnumerable<Vector3>> Cluster(double maxDistance, int minPointCount) {
-		HashSet<Vector3> completed = new HashSet<Vector3>();
-
-		foreach (var seedPoint in this.points) {
-			if (completed.Contains(seedPoint)) {
-				continue;
-			}
-			completed.Add(seedPoint);
-			var cluster = new HashSet<Vector3>();
-			cluster.Add(seedPoint);
-
-			var toVisit = new Queue<Vector3>();
-			toVisit.Enqueue(seedPoint);
-
-			while (toVisit.Any()) {
-				var next = toVisit.Dequeue();
-				foreach (var inRange in this.GetPointsInRange(next, maxDistance, false).Where(p => !cluster.Contains(p))) {
-					cluster.Add(inRange);
-					completed.Add(inRange);
-					toVisit.Enqueue(inRange);
-				}
-			}
-			if (cluster.Count >= minPointCount) {
-				yield return cluster;
-			}
-		}
-	}
-
 	private void prepareHeightmap() {
 		this.heightMap = new Dictionary<Bucket, double>();
 		this.normalMap = new Dictionary<Bucket, Vector3>();

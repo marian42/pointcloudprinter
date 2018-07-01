@@ -22,7 +22,6 @@ namespace XYZSeparator {
 					new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle()));
 				if (!triangle.HasZeroArea()) {
 					yield return triangle;
-					//Console.WriteLine(triangle.Normal + ", " + string.Format(CultureInfo.InvariantCulture, "{0:0.00}", triangle.Normal.Length) + " -- " + triangle.Flip().Normal + ", " + string.Format(CultureInfo.InvariantCulture, "{0:0.00}", triangle.Flip().Normal.Length));
 				}
 				
 				reader.ReadBytes(2); // Attribute count

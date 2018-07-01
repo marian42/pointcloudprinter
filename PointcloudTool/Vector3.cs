@@ -25,10 +25,6 @@ namespace XYZSeparator {
 			this.z = z;
 		}
 
-		public string ToXYZLine() {
-			return string.Format(CultureInfo.InvariantCulture, "{0:0.00} {1:0.00} {2:0.00}", this.x, this.z, this.y);
-		}
-
 		public override string ToString() {
 			return string.Format(CultureInfo.InvariantCulture, "({0:0.00} {1:0.00} {2:0.00})", this.x, this.y, this.z);
 		}

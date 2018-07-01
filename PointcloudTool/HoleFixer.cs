@@ -61,26 +61,5 @@ namespace XYZSeparator {
 				}
 			}
 		}
-
-		public static void Main_(string[] args) {
-			string inputFile = @"E:\pointdata\square.xyz";
-
-			var inputPoints = XYZFile.Read(inputFile, ' ');
-			var holeFixer = new HoleFixer(inputPoints);
-
-			var edgePoints = holeFixer.GetEdgePoints().ToArray();
-			var patches = holeFixer.CreatePatches(edgePoints).ToArray();
-			
-			string outputFile = @"E:\pointdata\fixed.xyz";
-
-			Console.WriteLine("Writing...");
-			using (StreamWriter sw = File.CreateText(outputFile)) {
-				foreach (var point in patches.Concat(inputPoints)) {
-					sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0:0.00} {1:0.00} {2:0.00}", point.x, point.z, point.y));
-				}
-			}
-			Console.WriteLine("Complete.");
-			Console.ReadLine();
-		}
 	}
 }

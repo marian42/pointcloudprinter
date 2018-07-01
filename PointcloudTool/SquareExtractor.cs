@@ -36,14 +36,6 @@ namespace XYZSeparator {
 			}
 		}
 
-		public void WriteFile(string filename) {
-			using (StreamWriter sw = File.CreateText(filename)) {
-				foreach (var point in this.points) {
-					sw.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0:0.00} {1:0.00} {2:0.00}", point.x - this.center.x, point.z - this.center.z, point.y - this.center.y));
-				}
-			}
-		}
-
 		public Vector3[] GetCenteredPoints() {
 			return this.points.Select(p => new Vector3(p.x - this.center.x, p.y - this.center.y, p.z - this.center.z)).ToArray();
 		}
