@@ -10,10 +10,10 @@ bpy.ops.object.select_all(action = 'SELECT')
 bpy.ops.object.delete()
 
 bpy.ops.import_mesh.stl(filepath = file_a)
-bpy.ops.import_mesh.stl(filepath = file_b)
+obj_a = bpy.context.selected_objects[0]
 
-obj_a = bpy.data.objects[0]
-obj_b = bpy.data.objects[1]
+bpy.ops.import_mesh.stl(filepath = file_b)
+obj_b = bpy.context.selected_objects[0]
 
 bpy.context.scene.objects.active = obj_a
 bpy.ops.object.modifier_add(type = 'BOOLEAN')
