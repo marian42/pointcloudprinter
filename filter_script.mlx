@@ -1,0 +1,57 @@
+<!DOCTYPE FilterScript>
+<FilterScript>
+ <filter name="Change the current layer">
+  <Param value="1" name="mesh" tooltip="" type="RichMesh" description=""/>
+ </filter>
+ <xmlfilter name="Screened Poisson Surface Reconstruction">
+  <xmlparam value="0" name="cgDepth"/>
+  <xmlparam value="false" name="confidence"/>
+  <xmlparam value="8" name="depth"/>
+  <xmlparam value="5" name="fullDepth"/>
+  <xmlparam value="8" name="iters"/>
+  <xmlparam value="4" name="pointWeight"/>
+  <xmlparam value="false" name="preClean"/>
+  <xmlparam value="1.5" name="samplesPerNode"/>
+  <xmlparam value="1.1" name="scale"/>
+  <xmlparam value="false" name="visibleLayer"/>
+ </xmlfilter>
+ <filter name="Vertex Attribute Transfer">
+  <Param value="2" name="SourceMesh" tooltip="" type="RichMesh" description=""/>
+  <Param value="0" name="TargetMesh" tooltip="" type="RichMesh" description=""/>
+  <Param value="false" name="GeomTransfer" tooltip="if enabled, the position of each vertex of the target mesh will be snapped onto the corresponding closest point on the source mesh" type="RichBool" description="Transfer Geometry"/>
+  <Param value="true" name="NormalTransfer" tooltip="if enabled, the normal of each vertex of the target mesh will get the (interpolated) normal of the corresponding closest point on the source mesh" type="RichBool" description="Transfer Normal"/>
+  <Param value="false" name="ColorTransfer" tooltip="if enabled, the color of each vertex of the target mesh will become the color of the corresponding closest point on the source mesh" type="RichBool" description="Transfer Color"/>
+  <Param value="false" name="QualityTransfer" tooltip="if enabled, the quality of each vertex of the target mesh will become the quality of the corresponding closest point on the source mesh" type="RichBool" description="Transfer quality"/>
+  <Param value="false" name="SelectionTransfer" tooltip="if enabled,  each vertex of the target mesh will be selected if the corresponding closest point on the source mesh falls in a selected face" type="RichBool" description="Transfer Selection"/>
+  <Param value="false" name="QualityDistance" tooltip="if enabled, we store the distance of the transferred value as in the vertex quality" type="RichBool" description="Store dist. as quality"/>
+  <Param value="100" name="UpperBound" tooltip="Sample points for which we do not find anything whithin this distance are rejected and not considered for recovering attributes." type="RichAbsPerc" max="391.023" description="Max Dist Search" min="0"/>
+  <Param value="false" name="onSelected" tooltip="If checked, only transfer to selected vertices on TARGET mesh" type="RichBool" description="Only on selection"/>
+ </filter>
+ <filter name="Change the current layer">
+  <Param value="2" name="mesh" tooltip="" type="RichMesh" description=""/>
+ </filter>
+ <filter name="Delete Current Mesh"/>
+ <filter name="Change the current layer">
+  <Param value="1" name="mesh" tooltip="" type="RichMesh" description=""/>
+ </filter>
+ <filter name="Delete Current Mesh"/>
+ <filter name="Change the current layer">
+  <Param value="0" name="mesh" tooltip="The name of the current mesh" type="RichMesh" description="Mesh"/>
+ </filter>
+ <xmlfilter name="Screened Poisson Surface Reconstruction">
+  <xmlparam value="0" name="cgDepth"/>
+  <xmlparam value="false" name="confidence"/>
+  <xmlparam value="10" name="depth"/>
+  <xmlparam value="5" name="fullDepth"/>
+  <xmlparam value="8" name="iters"/>
+  <xmlparam value="4" name="pointWeight"/>
+  <xmlparam value="false" name="preClean"/>
+  <xmlparam value="1.5" name="samplesPerNode"/>
+  <xmlparam value="1.1" name="scale"/>
+  <xmlparam value="false" name="visibleLayer"/>
+ </xmlfilter>
+ <filter name="Change the current layer">
+  <Param value="0" name="mesh" tooltip="The name of the current mesh" type="RichMesh" description="Mesh"/>
+ </filter>
+ <filter name="Delete Current Mesh"/>
+</FilterScript>
