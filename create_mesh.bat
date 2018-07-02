@@ -16,7 +16,7 @@ SET projection="WGS 84"
 SET verticaloffset=4
 
 :: The directory where the program will look for .xyz files
-SET datadirectory=data/
+SET datadirectory=data
 
 :: Make sure Meshlab and Blender are installed and put their executable locations here.
 SET meshlab="C:\Program Files\VCG\MeshLab\meshlabserver.exe"
