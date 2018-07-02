@@ -18,7 +18,7 @@ public static class PointcloudTool {
 			if (file.Extension != ".xyz") {
 				continue;
 			}
-			extractor.ProcessXYZFile(file.FullName, ',');
+			extractor.ProcessXYZFile(file, ',');
 		}
 
 		var points = extractor.GetCenteredPoints();
