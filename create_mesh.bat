@@ -2,8 +2,8 @@
 :: Please update these parameters before using it:
 
 :: The latitude and longitude of the center of the square to extract
-SET latitude=51.3349443
-SET longitude=7.2828901
+SET latitude=50.9413153
+SET longitude=6.9577452
 
 :: The size of the square to extract, in meters
 SET size=200

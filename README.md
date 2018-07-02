@@ -2,18 +2,18 @@
 A tool to turn pointcloud data from aerial lidar scans into solid meshes for 3D printing.
 
 ## Requirements
-- Data: Your data needs to be one or multiple `.xyz` text files that contain comma separated numbers. I've tested this tool with data from [here](https://www.opengeodata.nrw.de/produkte/geobasis/dom/dom1l/). This website provides free data for the German state NRW.
+- Data: Your data needs to be one or multiple `.xyz` text files that contain comma separated numbers. I've tested this tool with data from [this website](https://www.opengeodata.nrw.de/produkte/geobasis/dom/dom1l/) which provides free data for the German state NRW.
 - A computer running Windows. (You can port this software to Linux though)
 - Have [Blender](https://www.blender.org/download/) and [Meshlab](http://www.meshlab.net/#download) installed.
 
 ## Usage
-1. Download and unpack this software.
+1. Download and unpack [this software](https://github.com/marian42/pointcloudprinter/releases/download/1.0/pointcloudtool.zip).
 2. Download your pointcloud data and move your `.xyz` files into the data folder. You can also put them somewhere else and configure the location later.
 3. Decide on the location of the square you would like to extract from the data. I suggest you use [Google Maps](https://www.google.com/maps/) to find the right place. Copy the two numbers in your Google Maps URL. They are the latitude and longitude.
 4. Edit the file `create_mesh.bat` and put in your configuration. You need to set your latitude and longitude. You can also set the size of the square you'd like to extract.
 5. Double click the `create_mesh.bat` file. It will now run all the steps required to generate the mesh. Depending on how much data there is to process, this will take between a few minutes and an hour. Once finished, the window closes and if everything worked, a file called `mesh.stl` can be found in the project directory.
 
-If you followed these steps and it did or did not work, please [tell me how it worked](mailto:mail@marian42.de)!
+If you followed these steps and it did or did not work, please [tell me about it](mailto:mail@marian42.de)!
 
 ## How it works
 This paragraph will explain what each line of the batch file does.
