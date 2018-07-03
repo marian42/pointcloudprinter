@@ -34,6 +34,6 @@ pointcloudtool.exe makeSolid mesh.stl mesh.stl cube.stl %size% %verticaloffset%
 
 %blender% -b -P intersect.py -- mesh.stl cube.stl mesh.stl
 
-rm cube.stl
-rm pointcloud.xyz
-rm heightmap.xyz
+del cube.stl
+del pointcloud.xyz
+del heightmap.xyz
