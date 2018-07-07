@@ -1,5 +1,8 @@
 # Pointcloudprinter
 A tool to turn pointcloud data from aerial lidar scans into solid meshes for 3D printing.
+You can find examples of meshes made with this software on [Thingiverse](https://www.thingiverse.com/thing:2993625).
+
+![](https://i.imgur.com/LaZ5C9A.jpg)
 
 ## Requirements
 - Data: Your data needs to be one or multiple `.xyz` text files that contain comma separated numbers. I've tested this tool with data from [this website](https://www.opengeodata.nrw.de/produkte/geobasis/dom/dom1l/) which provides free data for the German state NRW.
@@ -49,3 +52,8 @@ This line uses Blender calculate the boolean intersection between the solid mesh
 ## License
 
 This project is distributed under the MIT licensense. Exempt from the license are the parts that link a source, as I didn't write them.
+
+License for the preview image in this document:   
+Land NRW (2018)   
+Datenlizenz Deutschland - Namensnennung - Version 2.0 (www.govdata.de/dl-de/by-2-0)   
+https://www.opengeodata.nrw.de/produkte/geobasis/dom/dom1l/   
