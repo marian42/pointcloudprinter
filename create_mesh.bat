@@ -26,7 +26,7 @@ SET blender="C:\Program Files\Blender Foundation\Blender\blender.exe"
 
 pointcloudtool.exe extract %datadirectory% pointcloud.xyz %latitude% %longitude% %projection% %size%
 
-pointcloudtool.exe fix pointcloud.xyz pointcloud.xyz heightmap.xyz
+pointcloudtool.exe fix pointcloud.xyz heightmap.xyz
 
 %meshlab% -i pointcloud.xyz -i heightmap.xyz -o mesh.stl -s filter_script.mlx
 

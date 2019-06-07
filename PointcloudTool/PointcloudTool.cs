@@ -22,27 +22,30 @@ public static class PointcloudTool {
 		}
 
 		var points = extractor.GetCenteredPoints();
-		Console.WriteLine("Writing output file... ");
+		Console.WriteLine("Writing output file...");
 		XYZFile.Write(outputFile, points);
 		Console.WriteLine("Complete.");
 	}
 
-	private static void fix(string inputFile, string outputFile, string heightmapFile) {
-		Console.WriteLine("Reading input file... ");
-			
-		var points = XYZFile.Read(inputFile);
-
-		Console.WriteLine("Fixing holes... ");
+	private static void createPatches(Vector3[] points, string filename) {
+		Console.WriteLine("Fixing holes...");
+		var fileWriter = new XYZFileWriter(filename, append: true);
 		var holeFixer = new HoleFixer(points);
 
-		var edgePoints = holeFixer.GetEdgePoints().ToArray();
-		var patches = holeFixer.CreatePatches(edgePoints).ToArray();
+		var edgePoints = holeFixer.GetEdgePoints();
+		foreach (var point in holeFixer.CreatePatches(edgePoints)) {
+			fileWriter.Write(point);
+		}
+		fileWriter.Close();
+	}
 
-		points = patches.Concat(points).ToArray();
+	private static void fix(string filename, string heightmapFile) {
+		Console.WriteLine("Reading input file...");		
+		var points = XYZFile.Read(filename);
 
-		Console.WriteLine("Writing output files... ");
-		XYZFile.Write(outputFile, points);
+		PointcloudTool.createPatches(points, filename);
 
+		Console.WriteLine("Creating heightmap...");
 		var pointHashSet = new PointHashSet(1d, points);
 		XYZFile.Write(heightmapFile, pointHashSet.GetHeightMap(), pointHashSet.GetHeightMapNormals());
 
@@ -65,7 +68,7 @@ public static class PointcloudTool {
 		string name = System.AppDomain.CurrentDomain.FriendlyName;
 		Console.WriteLine("This program can perform any one of three steps needed for mesh creation.");
 		Console.WriteLine(name + " extract <datadirectory> <output .xyz file> <latitude> <longitude> <input projection name> <size of extraction square>");
-		Console.WriteLine(name + " fix <inputfile .xyz> <output .xyz file> <output heightmap .xyz file>");
+		Console.WriteLine(name + " fix <input/output pointcloud .xyz file> <output heightmap .xyz file>");
 		Console.WriteLine(name + " makeSolid <input .stl file> <output .stl file> <output cube .stl file> <size> <z margin>");
 	}
 
@@ -88,16 +91,15 @@ public static class PointcloudTool {
 
 			PointcloudTool.extract(inputFolder, outputFile, latitude, longitude, projection, size);
 		} else if (args[0] == "fix") {
-			if (args.Length != 4) {
+			if (args.Length != 3) {
 				printUsage();
 				return;
 			}
 
-			string inputFile = args[1];
-			string outputFile = args[2];
-			string heightmapFile = args[3];
+			string pointcloudFile = args[1];
+			string heightmapFile = args[2];
 
-			PointcloudTool.fix(inputFile, outputFile, heightmapFile);
+			PointcloudTool.fix(pointcloudFile, heightmapFile);
 		} else if (args[0].ToLower() == "makesolid") {
 			if (args.Length != 6) {
 				printUsage();

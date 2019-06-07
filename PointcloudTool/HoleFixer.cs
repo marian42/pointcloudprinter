@@ -31,23 +31,18 @@ class HoleFixer {
 			}
 
 			if (i % 2000 == 0) {
-				Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0:0.00}% Finding edge points", ((double)i / this.points.Length * 100.0)));
+				Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0:0.00}% Fixing holes", ((double)i / this.points.Length * 100.0)));
 			}
 		}
 		yield break;
 	}
 
-	public IEnumerable<Vector3> CreatePatches(Vector3[] edgePoints) {
+	public IEnumerable<Vector3> CreatePatches(IEnumerable<Vector3> edgePoints) {
 		const double range = 1.6;
-		for (int i = 0; i < edgePoints.Length; i++) {
-			var point = edgePoints[i];
+		foreach (var point in edgePoints) {
 			var neighbourhood = this.hashSet.GetPointsInRange(point, range, true);
 			var highest = neighbourhood.OrderByDescending(p => p.y).First();
 			var best = neighbourhood.Where(p => highest.y - p.y < range / 2.0).OrderBy(p => Math.Pow(p.x - point.x, 2.0) + Math.Pow(p.z - point.z, 2.0)).First();
-
-			if (i % 1000 == 0) {
-				Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0:0.00}% Creating patches", ((double)i / edgePoints.Length * 100.0)));
-			}
 
 			const double minDistance = 2;
 			const double pointSpacing = 0.7;
