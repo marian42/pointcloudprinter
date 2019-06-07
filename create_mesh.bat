@@ -24,16 +24,21 @@ SET blender="C:\Program Files\Blender Foundation\Blender\blender.exe"
 
 :: Nothing to configure below this.
 
-pointcloudtool.exe extract %datadirectory% pointcloud.xyz %latitude% %longitude% %projection% %size%
+pointcloudtool.exe extract %datadirectory% pointcloud.xyz %latitude% %longitude% %projection% %size% || goto :error
 
-pointcloudtool.exe fix pointcloud.xyz heightmap.xyz
+pointcloudtool.exe fix pointcloud.xyz heightmap.xyz || goto :error
 
-%meshlab% -i pointcloud.xyz -i heightmap.xyz -o mesh.stl -s filter_script.mlx
+%meshlab% -i pointcloud.xyz -i heightmap.xyz -o mesh.stl -s filter_script.mlx || goto :error
 
-pointcloudtool.exe makeSolid mesh.stl mesh.stl cube.stl %size% %verticaloffset%
+pointcloudtool.exe makeSolid mesh.stl mesh.stl cube.stl %size% %verticaloffset% || goto :error
 
-%blender% -b -P intersect.py -- mesh.stl cube.stl mesh.stl
+%blender% -b -P intersect.py -- mesh.stl cube.stl mesh.stl || goto :error
 
 del cube.stl
 del pointcloud.xyz
 del heightmap.xyz
+
+exit /b
+
+:error
+echo Failed to create the mesh. && pause

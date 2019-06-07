@@ -77,44 +77,49 @@ public static class PointcloudTool {
 			printUsage();
 			return;
 		}
-		if (args[0] == "extract") {
-			if (args.Length != 7) {
+		try {
+			if (args[0] == "extract") {
+				if (args.Length != 7) {
+					printUsage();
+					return;
+				}
+				string inputFolder = args[1];
+				string outputFile = args[2];
+				double latitude = double.Parse(args[3], CultureInfo.InvariantCulture);
+				double longitude = double.Parse(args[4], CultureInfo.InvariantCulture);
+				string projection = args[5];
+				double size = double.Parse(args[6], CultureInfo.InvariantCulture);
+
+				PointcloudTool.extract(inputFolder, outputFile, latitude, longitude, projection, size);
+			} else if (args[0] == "fix") {
+				if (args.Length != 3) {
+					printUsage();
+					return;
+				}
+
+				string pointcloudFile = args[1];
+				string heightmapFile = args[2];
+
+				PointcloudTool.fix(pointcloudFile, heightmapFile);
+			} else if (args[0].ToLower() == "makesolid") {
+				if (args.Length != 6) {
+					printUsage();
+					return;
+				}
+
+				string inputFile = args[1];
+				string outputFile = args[2];
+				string cubeFile = args[3];
+				double size = double.Parse(args[4], CultureInfo.InvariantCulture);
+				double zMargin = double.Parse(args[5], CultureInfo.InvariantCulture);
+
+				PointcloudTool.makeSolid(inputFile, outputFile, cubeFile, size, zMargin);
+			} else {
 				printUsage();
-				return;
 			}
-			string inputFolder = args[1];
-			string outputFile = args[2];
-			double latitude = double.Parse(args[3], CultureInfo.InvariantCulture);
-			double longitude = double.Parse(args[4], CultureInfo.InvariantCulture);
-			string projection = args[5];
-			double size = double.Parse(args[6], CultureInfo.InvariantCulture);
-
-			PointcloudTool.extract(inputFolder, outputFile, latitude, longitude, projection, size);
-		} else if (args[0] == "fix") {
-			if (args.Length != 3) {
-				printUsage();
-				return;
-			}
-
-			string pointcloudFile = args[1];
-			string heightmapFile = args[2];
-
-			PointcloudTool.fix(pointcloudFile, heightmapFile);
-		} else if (args[0].ToLower() == "makesolid") {
-			if (args.Length != 6) {
-				printUsage();
-				return;
-			}
-
-			string inputFile = args[1];
-			string outputFile = args[2];
-			string cubeFile = args[3];
-			double size = double.Parse(args[4], CultureInfo.InvariantCulture);
-			double zMargin = double.Parse(args[5], CultureInfo.InvariantCulture);
-
-			PointcloudTool.makeSolid(inputFile, outputFile, cubeFile, size, zMargin);
-		} else {
-			printUsage();
+		} catch (Exception exception) {
+			Console.WriteLine(exception);
+			Environment.Exit(1);
 		}
 	}
 }
