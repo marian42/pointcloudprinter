@@ -8,9 +8,10 @@ You can find examples of meshes made with this software on [Thingiverse](https:/
 - Data: Your data needs to be one or multiple `.xyz` text files that contain comma separated numbers. I've tested this tool with data from [this website](https://www.opengeodata.nrw.de/produkte/geobasis/dom/dom1l/) which provides free data for the German state NRW.
 - A computer running Windows. (You can port this software to Linux though)
 - Have [Blender](https://www.blender.org/download/) and [Meshlab](http://www.meshlab.net/#download) installed.
+The current version was tested with Meshlab 2020.03 and Blender 2.82.
 
 ## Usage
-1. Download and unpack [this software](https://github.com/marian42/pointcloudprinter/releases/download/1.1/pointcloudtool.zip).
+1. Download and unpack [this software](https://github.com/marian42/pointcloudprinter/releases/download/1.2/pointcloudtool.zip).
 2. Download your pointcloud data and move your `.xyz` files into the data folder. You can also put them somewhere else and configure the location later.
 3. Decide on the location of the square you would like to extract from the data. I suggest you use [Google Maps](https://www.google.com/maps/) to find the right place. Copy the two numbers in your Google Maps URL. They are the latitude and longitude.
 4. Edit the file `create_mesh.bat` and put in your configuration. You need to set your latitude and longitude. You can also set the size of the square you'd like to extract.
