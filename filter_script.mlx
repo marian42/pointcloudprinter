@@ -3,7 +3,7 @@
  <filter name="Change the current layer">
   <Param value="1" name="mesh" tooltip="" type="RichMesh" description=""/>
  </filter>
- <xmlfilter name="Screened Poisson Surface Reconstruction">
+ <xmlfilter name="Surface Reconstruction: Screened Poisson">
   <xmlparam value="0" name="cgDepth"/>
   <xmlparam value="false" name="confidence"/>
   <xmlparam value="8" name="depth"/>
@@ -38,7 +38,7 @@
  <filter name="Change the current layer">
   <Param value="0" name="mesh" tooltip="The name of the current mesh" type="RichMesh" description="Mesh"/>
  </filter>
- <xmlfilter name="Screened Poisson Surface Reconstruction">
+ <xmlfilter name="Surface Reconstruction: Screened Poisson">
   <xmlparam value="0" name="cgDepth"/>
   <xmlparam value="false" name="confidence"/>
   <xmlparam value="10" name="depth"/>
