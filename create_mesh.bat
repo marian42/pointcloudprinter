@@ -20,7 +20,7 @@ SET datadirectory=data
 
 :: Make sure Meshlab and Blender are installed and put their executable locations here.
 SET meshlab="C:\Program Files\VCG\MeshLab\meshlabserver.exe"
-SET blender="C:\Program Files\Blender Foundation\Blender\blender.exe"
+SET blender="C:\Program Files\Blender Foundation\Blender 2.82\blender.exe"
 
 :: Nothing to configure below this.
 
