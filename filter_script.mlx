@@ -28,14 +28,6 @@
   <Param value="false" name="onSelected" tooltip="If checked, only transfer to selected vertices on TARGET mesh" type="RichBool" description="Only on selection"/>
  </filter>
  <filter name="Change the current layer">
-  <Param value="2" name="mesh" tooltip="" type="RichMesh" description=""/>
- </filter>
- <filter name="Delete Current Mesh"/>
- <filter name="Change the current layer">
-  <Param value="1" name="mesh" tooltip="" type="RichMesh" description=""/>
- </filter>
- <filter name="Delete Current Mesh"/>
- <filter name="Change the current layer">
   <Param value="0" name="mesh" tooltip="The name of the current mesh" type="RichMesh" description="Mesh"/>
  </filter>
  <xmlfilter name="Surface Reconstruction: Screened Poisson">
@@ -51,7 +43,6 @@
   <xmlparam value="false" name="visibleLayer"/>
  </xmlfilter>
  <filter name="Change the current layer">
-  <Param value="0" name="mesh" tooltip="The name of the current mesh" type="RichMesh" description="Mesh"/>
+  <Param value="3" name="mesh" tooltip="The name of the current mesh" type="RichMesh" description="Mesh"/>
  </filter>
- <filter name="Delete Current Mesh"/>
 </FilterScript>
