@@ -4,11 +4,19 @@ You can find examples of meshes made with this software on [Thingiverse](https:/
 
 ![](https://i.imgur.com/LaZ5C9A.jpg)
 
+## Deprecated project
+
+Since I published this project, the dataset I used is no longer available and the API in Meshlab that I used was dropped in a recent version of Meshlab.
+If you just found this project, it is very likely that it will be completely useless.
+I'm leaving it up in case people want to learn from it.
+If this project is still useful, please [let me know](mailto:mail@marian42.de).
+
+
 ## Requirements
 - Data: Your data needs to be one or multiple `.xyz` text files that contain comma separated numbers. I've tested this tool with data from [this website](https://www.opengeodata.nrw.de/produkte/geobasis/dom/dom1l/) which provides free data for the German state NRW.
 - A computer running Windows. (You can port this software to Linux though)
 - Have [Blender](https://www.blender.org/download/) and [Meshlab](http://www.meshlab.net/#download) installed.
-The current version was tested with Meshlab 2020.03 and Blender 2.82.
+The current version was tested with Meshlab 2020.03 (It won't work with newer versions of Meshlab!) and Blender 2.82.
 
 ## Usage
 1. Download and unpack [this software](https://github.com/marian42/pointcloudprinter/releases/download/1.2/pointcloudtool.zip).
