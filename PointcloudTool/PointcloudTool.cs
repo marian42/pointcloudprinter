@@ -11,6 +11,8 @@ public static class PointcloudTool {
 
 		var extractor = new SquareExtractor(coordinates.Easting, coordinates.Northing, size);
 
+		Console.WriteLine("Latitude: " + latitude + ", Longitude: " + longitude);
+		Console.WriteLine("Search coordinates converted to " + projection + ": " + coordinates.Northing + ", " + coordinates.Easting);
 		Console.WriteLine("Reading all .xyz files in " + inputFolder + "...");
 
 		foreach (var file in new DirectoryInfo(inputFolder).GetFiles()) {
