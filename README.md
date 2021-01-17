@@ -19,7 +19,7 @@ If this project is still useful, please [let me know](mailto:mail@marian42.de).
 The current version was tested with Meshlab 2020.03 (It won't work with newer versions of Meshlab!) and Blender 2.82.
 
 ## Usage
-1. Download and unpack [this software](https://github.com/marian42/pointcloudprinter/releases/download/1.2/pointcloudtool.zip).
+1. Download and unpack [this software](https://github.com/marian42/pointcloudprinter/releases/download/1.3/pointcloudtool.zip).
 2. Download your pointcloud data and move your `.xyz` files into the data folder.
 You can also put them somewhere else and configure the location later.
 3. Decide on the location of the square you would like to extract from the data.
