@@ -81,7 +81,6 @@
   <ItemGroup>
     <Compile Include="STLFile.cs" />
     <Compile Include="HoleFixer.cs" />
-    <Compile Include="LatLngUtmConverter.cs" />
     <Compile Include="PointcloudTool.cs" />
     <Compile Include="PointHashSet.cs" />
     <Compile Include="SolidMeshCreator.cs" />

@@ -5,14 +5,8 @@ using System.Linq;
 
 public static class PointcloudTool {
 
-	private static void extract(string inputFolder, string outputFile, double latitude, double longitude, string projection, double size) {
-		var converter = new Oware.LatLngUTMConverter(projection);
-		var coordinates = converter.convertLatLngToUtm(latitude, longitude);
-
-		var extractor = new SquareExtractor(coordinates.Easting, coordinates.Northing, size);
-
-		Console.WriteLine("Latitude: " + latitude + ", Longitude: " + longitude);
-		Console.WriteLine("Search coordinates converted to " + projection + ": " + coordinates.Northing + ", " + coordinates.Easting);
+	private static void extract(string inputFolder, string outputFile, double x, double y, double size) {
+		var extractor = new SquareExtractor(x, y, size);
 		Console.WriteLine("Reading all .xyz files in " + inputFolder + "...");
 
 		foreach (var file in new DirectoryInfo(inputFolder).GetFiles()) {
@@ -81,18 +75,17 @@ public static class PointcloudTool {
 		}
 		try {
 			if (args[0] == "extract") {
-				if (args.Length != 7) {
+				if (args.Length != 6) {
 					printUsage();
 					return;
 				}
 				string inputFolder = args[1];
 				string outputFile = args[2];
-				double latitude = double.Parse(args[3], CultureInfo.InvariantCulture);
-				double longitude = double.Parse(args[4], CultureInfo.InvariantCulture);
-				string projection = args[5];
-				double size = double.Parse(args[6], CultureInfo.InvariantCulture);
+				double x = double.Parse(args[3], CultureInfo.InvariantCulture);
+				double y = double.Parse(args[4], CultureInfo.InvariantCulture);
+				double size = double.Parse(args[5], CultureInfo.InvariantCulture);
 
-				PointcloudTool.extract(inputFolder, outputFile, latitude, longitude, projection, size);
+				PointcloudTool.extract(inputFolder, outputFile, x, y, size);
 			} else if (args[0] == "fix") {
 				if (args.Length != 3) {
 					printUsage();

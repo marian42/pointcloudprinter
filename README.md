@@ -20,17 +20,28 @@ The current version was tested with Meshlab 2020.03 (It won't work with newer ve
 
 ## Usage
 1. Download and unpack [this software](https://github.com/marian42/pointcloudprinter/releases/download/1.2/pointcloudtool.zip).
-2. Download your pointcloud data and move your `.xyz` files into the data folder. You can also put them somewhere else and configure the location later.
-3. Decide on the location of the square you would like to extract from the data. I suggest you use [Google Maps](https://www.google.com/maps/) to find the right place. Copy the two numbers in your Google Maps URL. They are the latitude and longitude.
-4. Edit the file `create_mesh.bat` and put in your configuration. You need to set your latitude and longitude. You can also set the size of the square you'd like to extract.
-5. Double click the `create_mesh.bat` file. It will now run all the steps required to generate the mesh. Depending on how much data there is to process, this will take between a few minutes and an hour. Once finished, the window closes and if everything worked, a file called `mesh.stl` can be found in the project directory.
+2. Download your pointcloud data and move your `.xyz` files into the data folder.
+You can also put them somewhere else and configure the location later.
+3. Decide on the location of the square you would like to extract from the data.
+I suggest you use [Google Maps](https://www.google.com/maps/) to find the right place. Copy the two numbers in your Google Maps URL.
+They are the latitude and longitude.
+4. Find out what coordinate system your XYZ data use.
+Use a tool like [this](https://epsg.io/transform#s_srs=4326&t_srs=4647) to convert your coordinates to the same system that your data uses.
+The latitude and longitude are in the `EPSG:4326 WGS 84` format, which will be the input coordinate system in the transform coordinates app.
+5. Edit the file `create_mesh.bat` and put in your configuration.
+You need to set your x and y coordinates of the center of the square you'd like to extract.
+You can also set the size the square.
+6. Double click the `create_mesh.bat` file.
+It will now run all the steps required to generate the mesh.
+Depending on how much data there is to process, this will take between a few minutes and an hour.
+Once finished, the window closes and if everything worked, a file called `mesh.stl` can be found in the project directory.
 
 If you followed these steps and it did or did not work, please [tell me about it](mailto:mail@marian42.de)!
 
 ## How it works
 This paragraph will explain what each line of the batch file does.
 
-	pointcloudtool.exe extract %datadirectory% pointcloud.xyz %latitude% %longitude% %projection% %size%
+	pointcloudtool.exe extract %datadirectory% pointcloud.xyz %x% %y% %size%
 
 This line runs the code from this repository to search all `.xyz`files in the `%datadirectory%`. It collects all points that are in the specified square and writes them to the file `pointcloud.xyz`.
 
