@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -20,7 +20,7 @@ public static class PointcloudTool {
 			if (file.Extension != ".xyz") {
 				continue;
 			}
-			extractor.ProcessXYZFile(file, ',');
+			extractor.ProcessXYZFile(file);
 		}
 
 		var points = extractor.GetCenteredPoints();

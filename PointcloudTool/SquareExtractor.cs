@@ -55,13 +55,13 @@ public class SquareExtractor {
 			&& this.CenterY - halfSize < y + 1000);
 	}
 
-	public void ProcessXYZFile(FileInfo file, char separator) {
+	public void ProcessXYZFile(FileInfo file) {
 		if (this.outOfRange(file.Name)) {
 			Console.WriteLine("Skipping " + file.Name + " since it contains an unrelated tile.");
 			return;
 		}
 
-		foreach (var point in XYZFile.ReadContinuously(file.FullName, separator)) {
+		foreach (var point in XYZFile.ReadContinuously(file.FullName)) {
 			this.handlePoint(point);
 		}
 	}

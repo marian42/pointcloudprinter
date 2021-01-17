@@ -7,16 +7,19 @@ using System.Globalization;
 public class XYZFile {
 	private const int batchSize = 1000;
 
-	public static Vector3[] Read(string fileName, char separator = ' ') {
-		return XYZFile.ReadContinuously(fileName, separator).ToArray();
+	public static Vector3[] Read(string fileName) {
+		return XYZFile.ReadContinuously(fileName).ToArray();
 	}
 
-	public static IEnumerable<Vector3> ReadContinuously(string fileName, char separator) {
+	public static IEnumerable<Vector3> ReadContinuously(string fileName) {
 		var filestream = new System.IO.FileStream(fileName,
 										  System.IO.FileMode.Open,
 										  System.IO.FileAccess.Read,
 										  System.IO.FileShare.ReadWrite);
 		var streamReader = new System.IO.StreamReader(filestream, System.Text.Encoding.UTF8, true, 128);
+
+		char separator = ',';
+		bool hasCheckedSeparator = false;
 
 		while (true) {
 			var batch = readBatch(streamReader);
@@ -24,6 +27,10 @@ public class XYZFile {
 				yield break;
 			}
 			foreach (var line in batch) {
+				if (!hasCheckedSeparator) {
+					separator = line.Contains(",") ? ',' : ' ';
+					hasCheckedSeparator = false;
+				}
 				yield return parseLine(line, separator);
 			}
 		}
